@@ -1,6 +1,6 @@
 all:
 
-	gcc ./src/main.c -o ./build/object/executavel
+	gcc ./src/main.c ./src/heapSort.c ./src/heapSort.h -o ./build/object/executavel
 
 clean:
 
