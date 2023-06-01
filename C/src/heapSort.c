@@ -57,5 +57,6 @@ void ajustarHeapMax(int arr[], int n, int i) {
 }
 
 /*
-Esta implementação do método Heap sort possui uma função 
+Esta implementação do método Heap sort possui uma função principal de onde as demais alterações ocorrem
+a função de troca serve para construir o heap, sempre que o nó for análisado e houver um nó filha maior que um pai uma troca vai ocorrer
 */
