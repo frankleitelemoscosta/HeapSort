@@ -15,6 +15,7 @@ using namespace std;
 struct Item{
 	string 	name;
 	signed short int age;
+	signed short int Weight;
 };
 
 struct Block{

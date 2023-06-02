@@ -1,62 +1,54 @@
 #include"heapSort.hpp"
+#include"Fila.hpp"
+#include<iostream>
 
-// Função auxiliar para imprimir o array
-void imprimirArray(int arr[], int n) {
-    for (int i = 0; i < n; ++i)
-    {
-        printf("%d ", arr[i]);
-    }
-    printf("\n");
-}
+using namespace std;
 
-// Função para trocar dois elementos
-void trocar(int *a, int *b) {
-    int temp = *a;
-    *a = *b;
-    *b = temp;
-}
 
-// Função principal do Heap Sort
-void HeapSort(int arr[], int n) {
-
-    // Construir o heap máximo
-    for (int i = n / 2 - 1; i >= 0; i--)
-        ajustarHeapMax(arr, n, i);
-
-    // Extrair elementos do heap um por um
-    for (int i = n - 1; i > 0; i--) {
-        // Mover a raiz atual para o final
-        trocar(&arr[0], &arr[i]);
-
-        // Chamar a função para ajustar o heap máximo na heap reduzida
-        ajustarHeapMax(arr, i, 0);
+void construirHeapMax(Fila *f) {
+    Block* atual = f->first;
+    while (atual != NULL) {
+        ajustarHeapMax(f, atual, atual->prox);
+        atual = atual->prox;
     }
 }
 
-// Função para ajustar o heap máximo
-void ajustarHeapMax(int arr[], int n, int i) {
-    int maior = i;          // Inicializa o maior como raiz
-    int esquerda = 2 * i + 1;    // Filho esquerdo
-    int direita = 2 * i + 2;     // Filho direito
 
-    // Se o filho esquerdo for maior que a raiz
-    if (esquerda < n && arr[esquerda] > arr[maior])
-        maior = esquerda;
+void ajustarHeapMax(Fila *f, Block *pai, Block *filho) {
+    if (filho == NULL)
+        return;
 
-    // Se o filho direito for maior que a raiz
-    if (direita < n && arr[direita] > arr[maior])
-        maior = direita;
+    Block* maior = pai;
+    if (pai->data.Weight < filho->data.Weight)
+        maior = filho;
 
-    // Se o maior não for a raiz
-    if (maior != i) {
-        trocar(&arr[i], &arr[maior]);
+    if (maior != pai) {
+        Item temp = pai->data;
+        pai->data = maior->data;
+        maior->data = temp;
 
-        // Ajustar recursivamente a subárvore afetada
-        ajustarHeapMax(arr, n, maior);
+        ajustarHeapMax(f, f->first, f->first->prox);  // Ajustar recursivamente a subárvore afetada
     }
 }
 
-/*
-Esta implementação do método Heap sort possui uma função principal de onde as demais alterações ocorrem
-a função de troca serve para construir o heap, sempre que o nó for análisado e houver um nó filha maior que um pai uma troca vai ocorrer
-*/
+
+void HeapSort(Fila *f) {
+    construirHeapMax(f);
+
+    int tamanho = 0;
+    Block* atual = f->first;
+    while (atual != NULL) {
+        tamanho++;
+        atual = atual->prox;
+    }
+
+    while (tamanho > 0) {
+        Item item;
+        Desenfileira(f, &item);
+
+        cout << item.name <<endl;
+        printf(" Age: %d, Weight: %d\n", item.age, item.Weight);
+        tamanho--;
+    }
+}
+//end code

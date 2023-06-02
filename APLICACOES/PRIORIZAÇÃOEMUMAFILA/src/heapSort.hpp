@@ -2,11 +2,11 @@
 #define __HEAPSORT_HPP
 
 #include<stdio.h>
+#include"Fila.hpp"
 
 //métodos
-    void HeapSort(int arr[], int n);
-    void ajustarHeapMax(int arr[], int n, int i);
-    void trocar(int *a, int *b);
-    void imprimirArray(int arr[], int n);
+    void HeapSort(Fila *F);
+    void ajustarHeapMax(Fila *f, Block *pai, Block *filho);
+    void construirHeapMax(Fila *f);
 
 #endif

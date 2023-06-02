@@ -3,5 +3,6 @@
 #include"Fila.hpp"
 
 void ReadFile(Fila *F);
+void AdicionandoPeso(Item *item);
 
 #endif
