@@ -13,3 +13,16 @@ For develop this algorithms was necessary answer this questions:
 * How build the Heap Sort algorithm in C?
 * How build the Heap Sort algorithm in C++?
 * Where use this algorithm, and if exist, how build this diferent use?
+
+
+<p style = "text-align = justify">
+The Heap Sort is compound by two procedures, the first is the Heap, that can maximum or minimum Heap, but in this project have just the maximum heap, because the two aplications in the real using the maximum heap.
+</p>
+
+See this:
+
+<image src="image/apenas-heap.gif" width="50%">
+
+<p style = "text-align = justify">
+In this gif you can see that don´t happend the ordination of the elements, 
+</p>
