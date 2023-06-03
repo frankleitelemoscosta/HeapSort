@@ -24,5 +24,5 @@ See this:
 <image src="image/apenas-heap.gif" width="50%">
 
 <p style = "text-align = justify">
-In this gif you can see that don´t happend the ordination of the elements, 
+In this gif, you can see that don´t happend the ordination of the elements, but one element is change of position at some times, this happend for the struct of  the tree change for that she will tranformer into a tree of the heap ordination method, and with this is possible ordinate the list or vet of elements.
 </p>
