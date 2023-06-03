@@ -1,5 +1,6 @@
 #include <iostream>
 using namespace std;
+#include<time.h>
 
 // To heapify a subtree rooted with node i
 // which is an index in arr[].
@@ -68,10 +69,25 @@ int main()
 {
     int arr[] = { 12, 11, 13, 5, 6, 7 };
     int N = sizeof(arr) / sizeof(arr[0]);
+    clock_t inicio, fim;
+    double tempo_de_uso_CPU;
+
+    inicio = clock(); 
+
+    printf("Vetor original:\n");
+    printArray(arr, N);
  
     // Function call
     heapSort(arr, N);
  
     cout << "Vetor ordenado (HeapSort): \n";
     printArray(arr, N);
+
+    // Captura o tempo de término
+		fim = clock();
+
+		tempo_de_uso_CPU = ((double) (fim - inicio)) / CLOCKS_PER_SEC; // Calcula o tempo de execução em segundos
+
+		printf("Time of execution: %.8f seconds\n", tempo_de_uso_CPU);
+return 0;
 }
