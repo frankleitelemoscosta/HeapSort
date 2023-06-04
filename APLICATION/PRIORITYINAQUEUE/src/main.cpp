@@ -9,27 +9,42 @@ using namespace std;
 int main()
 {
     Fila F;
+    Item I;
     clock_t inicio, fim;
     double tempo_de_uso_CPU;
+    int Size = 0;
+    
 
     inicio = clock(); 
 
-    printf("fila original:\n");
+    printf("start queue:\n");
  
 
     //faz a leitura do arquivo de entrada e armazena os dados na fila
         ReadFile(&F);
 
     //imprimindo antes de ordenar
-        FImprime(&F);
+        FImprime(&F,&Size);
 
     //ordenando a fila
         HeapSort(&F);
 
-    cout << "após ordenar:"<<endl;
+    cout << "after ordination:"<<endl;
 
-    //imprimindo fila após ser ordenada
-        FImprime(&F);
+    string Ordination_vet[Size];
+
+    F.first = F.first->prox;
+
+    for(int i = (Size - 1) ; i > -1 ; i--)
+    {
+        Ordination_vet[i] = F.first->data.name;
+        F.first = F.first->prox;
+    }
+
+    for(int i = 0 ; i < Size ; i++)
+    {
+        cout << Ordination_vet[i] << endl;
+    }
 
     fim = clock();
 

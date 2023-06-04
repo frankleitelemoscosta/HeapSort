@@ -14,7 +14,8 @@ bool isVazia(Fila *f){
 	return f->first == f->last;
 }
 
-void Enfileira(Fila *f, Item d){
+void Enfileira(Fila *f, Item d)
+{
 	f->last->prox = (Block*) malloc (sizeof(Block));
 	f->last = f->last->prox;
 	f->last->data = d;
@@ -41,13 +42,16 @@ void Desenfileira(Fila *f, Item *d){
 
 
 
-void FImprime(Fila *f){
+void FImprime(Fila *f, int *size){
 	Block *aux;
 
 	aux = f->first->prox;
-	while(aux != NULL){
-		cout << aux->data.name <<endl;
-		printf("%d\n", aux->data.age);
+	
+	while(aux != NULL)
+	{
+		cout << aux->data.name;
+		cout << " " <<aux->data.age <<endl;
+		*size = *size + 1;
 		aux = aux->prox;
 	}
 

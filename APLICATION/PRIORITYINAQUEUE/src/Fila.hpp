@@ -32,7 +32,7 @@ struct Fila{
 void FFVazia(Fila *f);
 void Enfileira(Fila *f, Item d);
 void Desenfileira(Fila *f, Item *d);
-void FImprime(Fila *f);
+void FImprime(Fila *f,int *size);
 
 #endif
 

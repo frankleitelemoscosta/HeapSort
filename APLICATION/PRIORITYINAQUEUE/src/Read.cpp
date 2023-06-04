@@ -37,14 +37,17 @@ void ReadFile(Fila *F){
 
     FFVazia(F);
 
+//in this loop is read the data of the file input and add in the queue 
     while(!feof(file))
     {
+
         fscanf(file,"%s",name);
         fscanf(file,"%hd",&auxAge);
         item.name = string(name);
         item.age = auxAge;
         AdicionandoPeso(&item);
         Enfileira(F,item);
+    
     }
 
     fclose(file);
