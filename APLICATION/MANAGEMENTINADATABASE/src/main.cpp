@@ -23,6 +23,8 @@ int main() {
     clock_t inicio, fim;
     double tempo_de_uso_CPU;
 
+    inicio = clock(); 
+
     std::vector<Registro> registros = {
         {5},
         {2},
@@ -31,8 +33,18 @@ int main() {
         {3}
     };
 
+    std::cout<<"Antes do Heap"<<std::endl;
+
+    // Imprimir os registros ordenados
+    for (const Registro& registro : registros) {
+        std::cout << registro.chave << " ";
+    }
+    std::cout << std::endl;
+
     // Ordenar os registros usando HeapSort
     heapSort(registros);
+
+    std::cout<<"Após o Heap"<<std::endl;
 
     // Imprimir os registros ordenados
     for (const Registro& registro : registros) {

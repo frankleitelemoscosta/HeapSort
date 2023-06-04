@@ -1,4 +1,4 @@
-<h1>Heap Sort Algorithm</h1>
+<h1>Heap Sort Algorithm(under development)</h1>
 
 <p style = "text-align = justify">
 This project have two aplication of the Heap Sort algorithm in a real context and one implementation in C and other in C++, that load the legacy of this data struct in the real world, and your use for the society.
