@@ -62,30 +62,37 @@ private:
 };
 
 int main() {
-    vector<int> arr = { 12, 11, 13, 5, 6, 7 };
-    int N = arr.size();
+    int tam;
+    cin>>tam;   
+    vector<int> arr(tam);
+    int N = tam;
+    srand(time(NULL));
     clock_t inicio, fim;
     double tempo_de_uso_CPU;
+    for(int i=0;i<tam;i++){
+       arr[i]=(rand()%1000);
+    }
+
 
     inicio = clock();
 
-    cout << "Vetor original:" << endl;
+    /*cout << "Vetor original:" << endl;
     for (int i = 0; i < N; ++i)
         cout << arr[i] << " ";
-    cout << endl;
+    cout << endl;*/
 
     HeapSort heap(arr);
 
     heap.sort();
 
-    cout << "Vetor ordenado (HeapSort):" << endl;
-    heap.printArray();
+    //cout << "Vetor ordenado (HeapSort):" << endl;
+    //heap.printArray();
 
     fim = clock();
 
     tempo_de_uso_CPU = ((double) (fim - inicio)) / CLOCKS_PER_SEC; // Calcula o tempo de execução em segundos
 
-    printf("Time of execution: %.8f seconds\n", tempo_de_uso_CPU);
+    printf("%.8f\n", tempo_de_uso_CPU);
 
     return 0;
 }
