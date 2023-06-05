@@ -1,93 +1,91 @@
 #include <iostream>
-using namespace std;
-#include<time.h>
+#include <vector>
+#include <ctime>
 
-// To heapify a subtree rooted with node i
-// which is an index in arr[].
-// n is size of heap
-void heapify(int arr[], int N, int i)
-{
- 
-    // Initialize largest as root
-    int largest = i;
- 
-    // left = 2*i + 1
-    int l = 2 * i + 1;
- 
-    // right = 2*i + 2
-    int r = 2 * i + 2;
- 
-    // If left child is larger than root
-    if (l < N && arr[l] > arr[largest])
-        largest = l;
- 
-    // If right child is larger than largest
-    // so far
-    if (r < N && arr[r] > arr[largest])
-        largest = r;
- 
-    // If largest is not root
-    if (largest != i) {
-        swap(arr[i], arr[largest]);
- 
-        // Recursively heapify the affected
-        // sub-tree
-        heapify(arr, N, largest);
+using namespace std;
+
+class HeapSort {
+public:
+    // Constructor
+    HeapSort(vector<int>& arr) : data(arr), size(arr.size()) {}
+
+    // Function to perform heap sort
+    void sort() {
+        buildHeap();
+        for (int i = size - 1; i > 0; i--) {
+            swap(0, i);
+            heapify(0, i);
+        }
     }
-}
- 
-// Main function to do heap sort
-void heapSort(int arr[], int N)
-{
- 
-    // Build heap (rearrange array)
-    for (int i = N / 2 - 1; i >= 0; i--)
-        heapify(arr, N, i);
- 
-    // One by one extract an element
-    // from heap
-    for (int i = N - 1; i > 0; i--) {
- 
-        // Move current root to end
-        swap(arr[0], arr[i]);
- 
-        // call max heapify on the reduced heap
-        heapify(arr, i, 0);
+
+    // Utility function to print the array
+    void printArray() {
+        for (int i = 0; i < size; ++i)
+            cout << data[i] << " ";
+        cout << endl;
     }
-}
- 
-// A utility function to print array of size n
-void printArray(int arr[], int N)
-{
-    for (int i = 0; i < N; ++i)
-        cout << arr[i] << " ";
-    cout << "\n";
-}
- 
-// Driver's code
-int main()
-{
-    int arr[] = { 12, 11, 13, 5, 6, 7 };
-    int N = sizeof(arr) / sizeof(arr[0]);
+
+private:
+    vector<int>& data;
+    int size;
+
+    // Helper function to build the heap
+    void buildHeap() {
+        for (int i = size / 2 - 1; i >= 0; i--)
+            heapify(i, size);
+    }
+
+    // Helper function to perform heapify operation
+    void heapify(int root, int heapSize) {
+        int largest = root;
+        int left = 2 * root + 1;
+        int right = 2 * root + 2;
+
+        if (left < heapSize && data[left] > data[largest])
+            largest = left;
+
+        if (right < heapSize && data[right] > data[largest])
+            largest = right;
+
+        if (largest != root) {
+            swap(root, largest);
+            heapify(largest, heapSize);
+        }
+    }
+
+    // Helper function to swap two elements in the array
+    void swap(int i, int j) {
+        int temp = data[i];
+        data[i] = data[j];
+        data[j] = temp;
+    }
+};
+
+int main() {
+    vector<int> arr = { 12, 11, 13, 5, 6, 7 };
+    int N = arr.size();
     clock_t inicio, fim;
     double tempo_de_uso_CPU;
 
-    inicio = clock(); 
+    inicio = clock();
 
-    printf("Vetor original:\n");
-    printArray(arr, N);
- 
-    // Function call
-    heapSort(arr, N);
- 
-    cout << "Vetor ordenado (HeapSort): \n";
-    printArray(arr, N);
+    cout << "Vetor original:" << endl;
+    for (int i = 0; i < N; ++i)
+        cout << arr[i] << " ";
+    cout << endl;
 
-    // Captura o tempo de término
-		fim = clock();
+    HeapSort heap(arr);
 
-		tempo_de_uso_CPU = ((double) (fim - inicio)) / CLOCKS_PER_SEC; // Calcula o tempo de execução em segundos
+    heap.sort();
 
-		printf("Time of execution: %.8f seconds\n", tempo_de_uso_CPU);
-return 0;
+    cout << "Vetor ordenado (HeapSort):" << endl;
+    heap.printArray();
+
+    fim = clock();
+
+    tempo_de_uso_CPU = ((double) (fim - inicio)) / CLOCKS_PER_SEC; // Calcula o tempo de execução em segundos
+
+    printf("Time of execution: %.8f seconds\n", tempo_de_uso_CPU);
+
+    return 0;
 }
