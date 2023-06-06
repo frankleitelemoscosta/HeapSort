@@ -22,3 +22,8 @@ N=100000
 
 
 ./average.sh "${N}"
+
+N=1000000
+
+
+./average.sh "${N}"
