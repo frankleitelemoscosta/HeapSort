@@ -9,7 +9,7 @@ OUTPUT_FILE="${N}.txt"
 make
 
 # Run the program N times and append the output to the file
-for ((i=1; i<=N; i++)); do
+for ((i=1; i<=1000; i++)); do
      echo "${N}" | ./build/objects/executavel >> "${OUTPUT_FILE}"
 done
 
